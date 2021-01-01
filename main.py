@@ -1,11 +1,13 @@
 import InputDialogs
-import ConfigAutomatic
-
+import ConfigAutomaton
+import State
 if __name__ == '__main__':
     descriptionFile = InputDialogs.loadDescriptionFile()
     print(f'description file added: {descriptionFile}')
-    automatic = ConfigAutomatic.returnAutomatic(descriptionFile)
+    automatic = ConfigAutomaton.returnAutomaton(descriptionFile)
     print(f'automatic is: \n{automatic}')
+    State.separateTransition(automatic[5:])
+    exit(2)
     inp = InputDialogs.receiveUserInput()
     print(inp)
     while inp is not None:
