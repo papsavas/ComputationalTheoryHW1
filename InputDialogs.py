@@ -13,7 +13,7 @@ def loadDescriptionFile():
 def receiveUserInput():
     Tk().withdraw()
     while simpledialog.ACTIVE == 'active':
-        return simpledialog.askstring(title="Εισαγωγή Χαρακτήρα",
+        return simpledialog.askstring(title="Input Dialog",
                                       prompt="Insert a character:")
 
 
