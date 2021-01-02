@@ -6,9 +6,10 @@ def separateTransition(transitions):
     for tr in transitions:
         args = tr.split(' ')
         transitionList.append({
-            "from": args[0],
-            "with": args[1],
-            "to": args[2]
+            "fromState": args[0],
+            "word": args[1],
+            "toState": args[2]
         })
-    print(transitionList)
+    return transitionList
+
 
