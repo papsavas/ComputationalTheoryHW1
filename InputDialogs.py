@@ -13,9 +13,17 @@ def loadDescriptionFile():
 
 def receiveUserInput():
     Tk().withdraw()
-    while simpledialog.ACTIVE == 'active':
-        return simpledialog.askstring(title="Input Dialog",
-                                      prompt="Insert a character:\n Empty Word = " + emtpyWord)
+    return str(simpledialog.askstring(title="Input Dialog",
+                                      prompt="Insert a character:\n Empty Word = " + emtpyWord))
+
+
+def getInput():
+    while True:
+        userInput = receiveUserInput()
+        print('user input: '+userInput)
+        if userInput is not None and userInput is not '':
+            break
+    return userInput
 
 
 def showError(errorMessage):
