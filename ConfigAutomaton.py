@@ -6,7 +6,7 @@ class Automaton:
             self.emptyWord = "#"
             self.numOfStates = int(data[0])
             self.startingState = str(data[1])
-            self.currentState = self.startingState
+            self.currentStates = list(self.startingState)
             self.terminalStates = list(str(data[3]))
             assert data[2].isdigit(), 'Terminal States number (line 3) must be a positive Integer'
             self.terminalStatesNum = int(data[2])

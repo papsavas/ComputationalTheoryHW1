@@ -17,34 +17,36 @@ def askInput():
         exit(0)
     inp = str(inp)  # since its not 'None', its needed as string and not as ndarray
     for char in inp:
-        if moveState(char) == 1:
+        if not moveState(char):
             return askInput()
     return askInput()
 
 
 def moveState(c):
-    # return codes:
-    # 0 -> moved
-    # 1 -> did not found transition
+    # returns bool dictating if a transition occurred
     global automaton
     if c not in automaton.alphabet:
         UserDialogs.showErrorDialog(f'Character {c} is not contained in automatons alphabet: {automaton.alphabet}')
         askInput()
     if c == automaton.emptyWord:
-        print('Empty Word Transition. State: ' + automaton.currentState)
-        return 0
+        print('Empty Word Transition. Current States: ' + str(automaton.currentStates))
+        return True
+    moved = False
+    sessionStates = []
     for trans in automaton.transitions:
-        if trans['word'] == c and trans['fromState'] == automaton.currentState:
-            automaton.currentState = trans['toState']
-            if automaton.currentState in automaton.terminalStates:
+        if trans['word'] == c and trans['fromState'] in automaton.currentStates:
+            sessionStates.append(trans['toState'])
+            if sessionStates[-1] in automaton.terminalStates:
                 print(f'Terminal State reached. Transition: [{trans["fromState"]} -({trans["word"]})-> {trans["toState"]}]')
-                print('Terminal State: ' + automaton.currentState)
-                return 0
+                print('Terminal State: ' + trans['toState'])
+                moved = True
             else:
                 print(f'Transition: [{trans["fromState"]} -({trans["word"]})-> {trans["toState"]}]')
-                print('Non Terminal State: ' + automaton.currentState)
-                return 0
-    return 1
+                print('Non Terminal State: ' + trans['toState'])
+                moved = True
+    automaton.currentStates.clear()
+    automaton.currentStates = sessionStates
+    return moved
 
 
 if __name__ == '__main__':
