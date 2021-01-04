@@ -1,3 +1,10 @@
+"""
+Author:
+Papageorgiadis Savvas
+dai18001
+@papsavas
+"""
+
 import InputDialogs
 import ConfigAutomaton
 
@@ -42,6 +49,5 @@ if __name__ == '__main__':
     descriptionFile = InputDialogs.loadDescriptionFile()
     print(f'description file added: {descriptionFile}')
     automaton = ConfigAutomaton.Automaton(descriptionFile)
-    print(f'automaton is: \n{str(automaton)}')
-    print(automaton.transitions)
+    print('automaton transitions:\n' + automaton.transitions)
     askInput()

@@ -2,13 +2,12 @@ from tkinter import Tk  # from tkinter import Tk for Python 3.x
 from tkinter.messagebox import showerror
 from tkinter.filedialog import askopenfilename
 from tkinter import simpledialog
-
 from numpy.core.defchararray import strip
 
 
 def loadDescriptionFile():
     Tk().withdraw()
-    filename = askopenfilename()
+    filename = askopenfilename(title="Select Automaton Configuration Document", filetypes=(('text files', 'txt'),))
     return filename
 
 
