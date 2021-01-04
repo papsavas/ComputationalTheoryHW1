@@ -18,8 +18,7 @@ def askInput():
 def moveState(c):
     # return codes:
     # 0 -> moved
-    # 1 -> did not found rule
-
+    # 1 -> did not found transition
     global automaton
     if c not in automaton.alphabet:
         InputDialogs.showError(f'Character {c} is not contained in automatons alphabet: {automaton.alphabet}')

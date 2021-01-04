@@ -8,10 +8,10 @@ class Automaton:
             self.startingState = str(data[1])
             self.currentState = self.startingState
             self.terminalState = list(str(data[3]))
+            assert data[2].isdigit(), 'Terminal States number (line 3) must be a positive Integer'
             self.terminalStatesNum = int(data[2])
-            assert type(self.terminalStatesNum) == int, 'Terminal States number (line 3) must be an Integer'
+            assert data[4].isdigit(), 'The number of transitions (line 5) must be a positive Integer'
             self.transitionsNum = int(data[4])
-            assert type(self.transitionsNum) == int, 'The number of transitions (line 5) must be an Integer'
             self.transitions = []
             self.alphabet = set()
             for tr in data[5:]:
