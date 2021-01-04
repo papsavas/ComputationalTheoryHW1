@@ -14,7 +14,7 @@ def loadDescriptionFile():
 def receiveUserInput():
     Tk().withdraw()
     return strip(str(simpledialog.askstring(title="Input Dialog",
-                                            prompt="Insert a character:\n Empty Word = ")))
+                                            prompt="Insert a character:\n Empty character = #")))
 
 
 def getInput():

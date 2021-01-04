@@ -14,7 +14,7 @@ def askInput():
     inp = UserDialogs.getInput()
     if inp is None:
         print('User Exited')
-        exit(1)
+        exit(0)
     inp = str(inp)  # since its not 'None', its needed as string and not as ndarray
     for char in inp:
         if moveState(char) == 1:
@@ -37,7 +37,7 @@ def moveState(c):
             if automaton.currentState in automaton.terminalStates:
                 print('Terminal State: ' + automaton.currentState)
                 print('Terminal State reached. Transitioned with: ' + str(trans))
-                exit(0)
+                return 0
             else:
                 print('Non Terminal State: ' + automaton.currentState)
                 print('Transitioned with ' + str(trans))
@@ -49,5 +49,5 @@ if __name__ == '__main__':
     descriptionFile = UserDialogs.loadDescriptionFile()
     print(f'description file added: {descriptionFile}')
     automaton = ConfigAutomaton.Automaton(descriptionFile)
-    print('automaton transitions:\n' + automaton.transitions)
+    print('automaton transitions:\n' + str(automaton.transitions))
     askInput()
