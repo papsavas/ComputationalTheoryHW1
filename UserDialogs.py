@@ -25,9 +25,9 @@ def getInput():
             return None
         if not userInput == '':
             break
-        showError('You need to add a character or a word. To exit, press "X" or "Cancel"')
+        showErrorDialog('You need to add a character or a word. To exit, press "X" or "Cancel"')
     return userInput
 
 
-def showError(errorMessage):
+def showErrorDialog(errorMessage):
     showerror(title="Error", message=errorMessage)

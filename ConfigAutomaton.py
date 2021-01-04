@@ -7,13 +7,14 @@ class Automaton:
             self.numOfStates = int(data[0])
             self.startingState = str(data[1])
             self.currentState = self.startingState
-            self.terminalState = list(str(data[3]))
+            self.terminalStates = list(str(data[3]))
             assert data[2].isdigit(), 'Terminal States number (line 3) must be a positive Integer'
             self.terminalStatesNum = int(data[2])
             assert data[4].isdigit(), 'The number of transitions (line 5) must be a positive Integer'
             self.transitionsNum = int(data[4])
             self.transitions = []
             self.alphabet = set()
+            self.alphabet.add(self.emptyWord)
             for tr in data[5:]:
                 args = tr.split(' ')
                 self.alphabet.add(args[1])

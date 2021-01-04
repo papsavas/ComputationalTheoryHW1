@@ -5,13 +5,13 @@ dai18001
 @papsavas
 """
 
-import InputDialogs
+import UserDialogs
 import ConfigAutomaton
 
 
 def askInput():
     global automaton
-    inp = InputDialogs.getInput()
+    inp = UserDialogs.getInput()
     if inp is None:
         print('User Exited')
         exit(1)
@@ -28,13 +28,13 @@ def moveState(c):
     # 1 -> did not found transition
     global automaton
     if c not in automaton.alphabet:
-        InputDialogs.showError(f'Character {c} is not contained in automatons alphabet: {automaton.alphabet}')
+        UserDialogs.showErrorDialog(f'Character {c} is not contained in automatons alphabet: {automaton.alphabet}')
         askInput()
 
     for trans in automaton.transitions:
         if trans['word'] == c and trans['fromState'] == automaton.currentState:
             automaton.currentState = trans['toState']
-            if automaton.currentState in automaton.terminalState:
+            if automaton.currentState in automaton.terminalStates:
                 print('Terminal State: ' + automaton.currentState)
                 print('Terminal State reached. Transitioned with: ' + str(trans))
                 exit(0)
@@ -46,7 +46,7 @@ def moveState(c):
 
 
 if __name__ == '__main__':
-    descriptionFile = InputDialogs.loadDescriptionFile()
+    descriptionFile = UserDialogs.loadDescriptionFile()
     print(f'description file added: {descriptionFile}')
     automaton = ConfigAutomaton.Automaton(descriptionFile)
     print('automaton transitions:\n' + automaton.transitions)
