@@ -30,17 +30,19 @@ def moveState(c):
     if c not in automaton.alphabet:
         UserDialogs.showErrorDialog(f'Character {c} is not contained in automatons alphabet: {automaton.alphabet}')
         askInput()
-
+    if c == automaton.emptyWord:
+        print('Empty Word Transition. State: ' + automaton.currentState)
+        return 0
     for trans in automaton.transitions:
         if trans['word'] == c and trans['fromState'] == automaton.currentState:
             automaton.currentState = trans['toState']
             if automaton.currentState in automaton.terminalStates:
+                print(f'Terminal State reached. Transition: [{trans["fromState"]} -({trans["word"]})-> {trans["toState"]}]')
                 print('Terminal State: ' + automaton.currentState)
-                print('Terminal State reached. Transitioned with: ' + str(trans))
                 return 0
             else:
+                print(f'Transition: [{trans["fromState"]} -({trans["word"]})-> {trans["toState"]}]')
                 print('Non Terminal State: ' + automaton.currentState)
-                print('Transitioned with ' + str(trans))
                 return 0
     return 1
 
