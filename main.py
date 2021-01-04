@@ -23,25 +23,31 @@ def askInput():
 
 
 def moveState(c):
-    # returns bool dictating if a transition occurred
+    # returns bool indicating if a transition occurred
     global automaton
     if c not in automaton.alphabet:
         UserDialogs.showErrorDialog(f'Character {c} is not contained in automatons alphabet: {automaton.alphabet}')
         askInput()
     if c == automaton.emptyWord:
+        print('----------------------')
+        print(f'word: {c}')
         print('Empty Word Transition. Current States: ' + str(automaton.currentStates))
         return True
     moved = False
     sessionStates = []
     for trans in automaton.transitions:
-        if trans['word'] == c and trans['fromState'] in automaton.currentStates:
+        if c == trans['word'] and trans['fromState'] in automaton.currentStates:
             sessionStates.append(trans['toState'])
+            print('----------------------')
+            print(f'word: {c}')
             if sessionStates[-1] in automaton.terminalStates:
                 print(f'Terminal State reached. Transition: [{trans["fromState"]} -({trans["word"]})-> {trans["toState"]}]')
+                print('Current States: ' + str(automaton.currentStates))
                 print('Terminal State: ' + trans['toState'])
                 moved = True
             else:
                 print(f'Transition: [{trans["fromState"]} -({trans["word"]})-> {trans["toState"]}]')
+                print('Current States: ' + str(automaton.currentStates))
                 print('Non Terminal State: ' + trans['toState'])
                 moved = True
     automaton.currentStates.clear()
